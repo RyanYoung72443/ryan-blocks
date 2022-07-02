@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "create-block/testimonial",
+	"version": "0.1.0",
+	"title": "Testimonial",
+	"category": "advanced-blocks",
+	"icon": "businessperson",
+	"description": "Example of a custom testimonial block.",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "testimonial",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"attributes": {
+		"testimonialText": {
+			"type": "string",
+			"source": "html",
+			"selector": ".testimonial-block blockquote"
+		},
+		"testimonialName": {
+			"type": "string",
+			"source": "html",
+			"selector": "p"
+		},
+		"testimonialImage": {
+			"type": "string",
+			"source": "attribute",
+			"attribute": "src",
+			"selector": ".testimonial-info img"
+		}
+	}
+}
