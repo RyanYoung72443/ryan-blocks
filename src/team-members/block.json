@@ -4,7 +4,7 @@
 	"name": "blocks-course/team-members",
 	"version": "0.1.0",
 	"title": "Team Members",
-	"category": "media",
+	"category": "advanced-blocks",
 	"icon": "admin-users",
 	"description": "A team members grid",
 	"keywords": ["Team", "Members", "Grid"],
