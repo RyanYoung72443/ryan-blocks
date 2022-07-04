@@ -1,11 +1,10 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "blocks-course/team-members",
+  "name": "create-block/team-members",
   "version": "0.1.0",
   "title": "Team Members",
   "category": "advanced-blocks",
-  "icon": "admin-users",
+  "icon": "groups",
   "description": "A team members grid",
   "keywords": [
     "Team",
@@ -19,5 +18,10 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "attributes": {}
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 2
+    }
+  }
 }

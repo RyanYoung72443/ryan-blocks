@@ -9,7 +9,7 @@
  * Author:            Ryan Young
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       plugin-boiler
+ * Text Domain:       create-block
  *
  * @package           create-block
  */
@@ -24,7 +24,6 @@
 function create_block_plugin_boiler_block_init() {
 	//register each block by folder name
 	register_block_type( __DIR__ . '/build/team-members' );
-	register_block_type( __DIR__ . '/build/testimonial' );
 	register_block_type( __DIR__ . '/build/text-box' );
 }
 add_action( 'init', 'create_block_plugin_boiler_block_init' );
