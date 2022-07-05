@@ -368,9 +368,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "changeMediaAttribute": () => (/* binding */ changeMediaAttribute),
 /* harmony export */   "removeAttribute": () => (/* binding */ removeAttribute)
 /* harmony export */ });
-const changeMediaAttribute = (attribute, change, size) => {
-  const url = change.sizes[size] ? change.sizes[size].url : change.sizes["full"].url;
-  return changeAttribute(attribute, url);
+const changeMediaAttribute = function (setAttributes, image) {
+  let size = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  let {
+    url,
+    id,
+    alt
+  } = image;
+
+  if (!image || !image.url) {
+    setAttributes({
+      url: undefined,
+      id: undefined,
+      alt: ""
+    });
+    return;
+  }
+
+  if (size !== "") {
+    url = change.sizes[size] ? change.sizes[size].url : change.sizes["full"].url;
+  }
+
+  return setAttributes({
+    url: url,
+    id: id,
+    alt: alt
+  });
 };
 const removeAttribute = (attributes, oldAttribute) => {
   const attr = {};
