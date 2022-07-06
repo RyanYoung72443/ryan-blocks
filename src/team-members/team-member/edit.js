@@ -17,13 +17,22 @@ import {
 	PanelBody,
 	TextareaControl,
 	SelectControl,
+	Icon,
+	Button,
+	Tooltip,
 } from "@wordpress/components";
 import { usePrevious } from "@wordpress/compose";
 import { useSelect } from "@wordpress/data";
 import { changeMediaAttribute } from "../../utilities";
 
-function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
-	const { name, bio, id, alt, url } = attributes;
+function Edit({
+	attributes,
+	setAttributes,
+	noticeOperations,
+	noticeUI,
+	isSelected,
+}) {
+	const { name, bio, id, alt, url, socialLinks } = attributes;
 	const { createErrorNotice, removeAllNotices } = noticeOperations;
 	const [blobURL, setBlobURL] = useState();
 
@@ -55,6 +64,8 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 		});
 		return options;
 	};
+
+	const addNewSocialItem = () => {};
 
 	useEffect(() => {
 		if (!id && isBlobURL(url)) {
@@ -174,6 +185,32 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 					value={bio}
 					allowedFormats={[]}
 				/>
+				<div className="wp-block-create-block-team-member-social-links">
+					<ul>
+						{socialLinks &&
+							socialLinks.map((link, i) => {
+								return (
+									<li key={i}>
+										<Button
+											aria-label={__("Edit Social Link", "team-members")}
+											icon={link.icon}
+										/>
+									</li>
+								);
+							})}
+						{isSelected && (
+							<li className="wp-block-create-block-team-member-add-icon-li">
+								<Tooltip text={__("Add Social Link", "team-members")}>
+									<Button
+										aria-label={__("Add Social Link", "team-members")}
+										icon="plus"
+										onClick={addNewSocialItem}
+									/>
+								</Tooltip>
+							</li>
+						)}
+					</ul>
+				</div>
 			</div>
 		</>
 	);

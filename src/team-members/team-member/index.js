@@ -40,6 +40,19 @@ registerBlockType("create-block/team-member", {
 			selector: "img",
 			attribute: "src",
 		},
+		socialLinks: {
+			type: "array",
+			default: [
+				{
+					link: "https:facbook.com",
+					icon: "facebook",
+				},
+				{
+					link: "https:instagram.com",
+					icon: "instagram",
+				},
+			],
+		},
 	},
 	edit: Edit,
 	save,
