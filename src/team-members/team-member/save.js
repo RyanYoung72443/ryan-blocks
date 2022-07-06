@@ -1,7 +1,7 @@
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 export default function Save({ attributes }) {
-	const { name, bio, url, alt } = attributes;
+	const { name, bio, url, alt, id } = attributes;
 	return (
 		<div {...useBlockProps.save()}>
 			{url && <img src={url} alt={alt} clasName={id ? `wp-image-${id}` : ""} />}
