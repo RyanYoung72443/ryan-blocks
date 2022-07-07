@@ -1,0 +1,26 @@
+{
+	"apiVersion": 2,
+	"name": "create-block/list-posts",
+	"title": "List Posts",
+	"category": "advanced-blocks",
+	"icon": "embed-post",
+	"description": "A box of text.",
+	"keywords": ["text", "paragraph", "box"],
+	"supports": {
+		"html": false
+	},
+	"textdomain": "list-post",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"attributes": {
+		"numberOfPosts": {
+			"type": "number",
+			"default": 5
+		},
+		"displayFeaturedImage": {
+			"type": "boolean",
+			"default": true
+		}
+	}
+}

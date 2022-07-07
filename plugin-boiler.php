@@ -21,10 +21,41 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
+
+function create_block_render_list_posts_block($attributes){
+  $args = array(
+		'post_per_page' => $attributes['numberOfPosts'],
+		'post_status' => 'publish',
+	);
+	 $recent_posts = get_posts($args);
+	 $posts = '<ul '. get_block_wrapper_attributes() .' >';
+	 foreach($recent_posts as $post) {
+		$title = get_the_title( $post );
+		$title = $title ? $title : __('(Not title)', 'latest-post');
+		$permalink = get_permalink( $post );
+		$excerpt = get_the_excerpt( $post );
+		$posts .= '<li>';
+		
+		if($attributes["displayFeaturedImage"] && has_post_thumbnail( $post )) {
+			$posts .= get_the_post_thumbnail( $post, 'large' );
+		}
+		$posts .= '<h5><a href="'. esc_url( $permalink ) .'">'. $title .'</a></h5>';
+		$posts .= '<time datetime="' . esc_attr( get_the_date('c', $post) ) . '">' . esc_html( get_the_date('', $post) ) .'</>';
+		if(!empty($excerpt)) {
+			$posts .= '<p>'. $excerpt .'</p>';
+		}
+
+		$posts .= '</li>';
+	 }
+	 $posts .= '</ul>';
+	 return $posts;
+}
+
 function create_block_plugin_boiler_block_init() {
 	//register each block by folder name
 	register_block_type( __DIR__ . '/build/team-members' );
 	register_block_type( __DIR__ . '/build/text-box' );
+  register_block_type_from_metadata( __DIR__ . '/build/dynamic-posts', array('render_callback' => 'create_block_render_list_posts_block') );
 }
 add_action( 'init', 'create_block_plugin_boiler_block_init' );
 
